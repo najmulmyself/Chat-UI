@@ -1,5 +1,6 @@
 import 'package:chat_ui/models/user_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 
 class FavouriteContacts extends StatelessWidget {
   const FavouriteContacts({
@@ -37,10 +38,29 @@ class FavouriteContacts extends StatelessWidget {
         ),
         Container(
           height: 120,
-          color: Colors.blueGrey,
           child: ListView.builder(
+            padding: EdgeInsets.only(left: 10),
+            scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              return Text(favorites[index].name!);
+              return Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Column(
+                  children: [
+                    CircleAvatar(
+                      radius: 30,
+                      backgroundImage: AssetImage(favorites[index].imageUrl!),
+                    ),
+                    SizedBox(height: 6),
+                    Text(
+                      favorites[index].name!,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                          color: Colors.blueGrey),
+                    ),
+                  ],
+                ),
+              );
             },
             itemCount: favorites.length,
           ),
