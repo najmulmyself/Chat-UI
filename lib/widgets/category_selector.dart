@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 
-class Category_selector extends StatelessWidget {
-  // const Category_selector({
-  //   Key? key,
-  // }) : super(key: key);
+class Category_selector extends StatefulWidget {
+  @override
+  State<Category_selector> createState() => _Category_selectorState();
+}
 
+class _Category_selectorState extends State<Category_selector> {
+  // const Category_selector({
   int selectedIndex = 0;
+
   List categories = ['Messages', 'Online', 'Group', 'Requests'];
 
   @override
@@ -16,9 +19,25 @@ class Category_selector extends StatelessWidget {
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 32),
-            child: Text(categories[index]),
+          return GestureDetector(
+            onTap: () {
+              setState(() {
+                selectedIndex == index;
+              });
+            },
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 30.0, horizontal: 20),
+              child: Text(
+                categories[index],
+                style: TextStyle(
+                    fontSize: 22,
+                    letterSpacing: 1.2,
+                    color:
+                        index == selectedIndex ? Colors.white : Colors.white60,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
           );
         },
         itemCount: categories.length,
