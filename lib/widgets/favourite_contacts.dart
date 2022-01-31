@@ -1,3 +1,4 @@
+import 'package:chat_ui/models/user_model.dart';
 import 'package:flutter/material.dart';
 
 class FavouriteContacts extends StatelessWidget {
@@ -35,7 +36,14 @@ class FavouriteContacts extends StatelessWidget {
           ),
         ),
         Container(
-          
+          height: 120,
+          color: Colors.blueGrey,
+          child: ListView.builder(
+            itemBuilder: (context, index) {
+              return Text(favorites[index].name!);
+            },
+            itemCount: favorites.length,
+          ),
         ),
       ],
     );
