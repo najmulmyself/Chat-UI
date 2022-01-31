@@ -6,23 +6,20 @@ class Category_selector extends StatefulWidget {
 }
 
 class _Category_selectorState extends State<Category_selector> {
-  // const Category_selector({
   int selectedIndex = 0;
-
   List categories = ['Messages', 'Online', 'Group', 'Requests'];
-
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 90,
-      color: Colors.blue,
+      color: Theme.of(context).primaryColor,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
               setState(() {
-                selectedIndex == index;
+                selectedIndex = index;
               });
             },
             child: Padding(
