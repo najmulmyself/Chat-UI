@@ -24,7 +24,7 @@ class Message {
 }
 
 // EXAMPLE CHATS ON HOME SCREEN
-List<Message> chats = [
+List chats = [
   Message(
     sender: james,
     time: '5:30 PM',
