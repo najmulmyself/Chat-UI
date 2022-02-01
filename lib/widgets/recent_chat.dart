@@ -25,42 +25,38 @@ class RecentChat extends StatelessWidget {
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
+                Container(
+                  child: CircleAvatar(
+                    radius: 35,
+                    backgroundImage: AssetImage(chat.sender.imageUrl),
+                  ),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CircleAvatar(
-                      radius: 35,
-                      backgroundImage: AssetImage(chat.sender.imageUrl),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          chat.sender.name,
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey,
-                          ),
-                        ),
-                        Text(
-                          chat.text,
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.blueGrey,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                    Container(
-                      child: Column(
-                        children: [
-                          Text(chat.time),
-                          Text("NEW"),
-                        ],
+                    Text(
+                      chat.sender.name,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey,
                       ),
                     ),
+                    Text(
+                      chat.text,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.blueGrey,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Text(chat.time),
+                    Text("NEW"),
                   ],
                 ),
               ],
