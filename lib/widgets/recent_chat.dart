@@ -18,50 +18,58 @@ class RecentChat extends StatelessWidget {
             topRight: Radius.circular(30),
           ),
         ),
-        child: ListView.builder(
-          itemCount: chats.length,
-          itemBuilder: (context, index) {
-            final chat = chats[index];
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  child: CircleAvatar(
+        child: ClipRRect(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+          child: ListView.builder(
+            itemCount: chats.length,
+            itemBuilder: (context, index) {
+              final chat = chats[index];
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  CircleAvatar(
                     radius: 35,
                     backgroundImage: AssetImage(chat.sender.imageUrl),
                   ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      chat.sender.name,
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
+                  // SizedBox(width: 1),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        chat.sender.name,
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        ),
                       ),
-                    ),
-                    Text(
-                      chat.text,
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.blueGrey,
+                      Container(
+                        width: MediaQuery.of(context).size.width * .45,
+                        child: Text(
+                          chat.text,
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.blueGrey,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Text(chat.time),
-                    Text("NEW"),
-                  ],
-                ),
-              ],
-            );
-          },
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Text(chat.time),
+                      Text("NEW"),
+                    ],
+                  ),
+                ],
+              );
+            },
+          ),
         ),
       ),
     );
