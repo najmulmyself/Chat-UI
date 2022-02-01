@@ -1,4 +1,5 @@
 import 'package:chat_ui/widgets/favourite_contacts.dart';
+import 'package:chat_ui/widgets/recent_chat.dart';
 import 'package:flutter/material.dart';
 
 import 'models/message_models.dart';
@@ -62,24 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 children: [
                   FavouriteContacts(),
-                  Expanded(
-                    child: Container(
-                      height: 300,
-                      decoration: BoxDecoration(
-                        color: Colors.amber,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30),
-                          topRight: Radius.circular(30),
-                        ),
-                      ),
-                      child: ListView.builder(
-                        itemCount: chats.length,
-                        itemBuilder: (context, index) {
-                          return Text(chats[index].sender.name);
-                        },
-                      ),
-                    ),
-                  ),
+                  RecentChat(),
                 ],
               ),
             ),
@@ -89,3 +73,4 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
