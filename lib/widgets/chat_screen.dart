@@ -41,9 +41,55 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
       child: Column(
         children: [
-          Text(message.time),
-          SizedBox(height: 5),
-          Text(message.text),
+          Text(
+            message.time,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: Colors.blueGrey,
+            ),
+          ),
+          SizedBox(height: 8),
+          Text(
+            message.text,
+            style: TextStyle(
+              color: Colors.blueGrey,
+              fontWeight: FontWeight.w600,
+              fontSize: 16,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  _buildMessageComposer() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 8),
+      height: 70,
+      color: Colors.white,
+      child: Row(
+        children: [
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.photo),
+            iconSize: 25,
+            color: Theme.of(context).primaryColor,
+          ),
+          Expanded(
+            // if we don't use expanded it will take the maximum space in a row.
+            // .collapse will be remove the underline in the textfield.
+            child: TextField(
+              decoration:
+                  InputDecoration.collapsed(hintText: "Send a message...."),
+            ),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.send),
+            iconSize: 25,
+            color: Theme.of(context).primaryColor,
+          ),
         ],
       ),
     );
@@ -86,6 +132,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   topRight: Radius.circular(30),
                 ),
                 child: ListView.builder(
+                  reverse: true,
                   padding: EdgeInsets.only(top: 15),
                   itemBuilder: (context, index) {
                     final Message message = messages[index];
@@ -97,6 +144,7 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
             ),
           ),
+          _buildMessageComposer(),
         ],
       ),
     );
