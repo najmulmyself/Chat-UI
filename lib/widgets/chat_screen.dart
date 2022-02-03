@@ -10,6 +10,45 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  _buildMessage(message, isMe) {
+    return Container(
+      margin: isMe
+          ? EdgeInsets.only(
+              top: 8,
+              bottom: 8,
+              left: 88,
+            )
+          : EdgeInsets.only(
+              top: 8,
+              bottom: 8,
+              right: 88,
+            ),
+      padding: EdgeInsets.symmetric(
+        horizontal: 25,
+        vertical: 15,
+      ),
+      decoration: BoxDecoration(
+        color: isMe ? Theme.of(context).accentColor : Color(0xFFFFEFEE),
+        borderRadius: isMe
+            ? BorderRadius.only(
+                topLeft: Radius.circular(15),
+                bottomLeft: Radius.circular(15),
+              )
+            : BorderRadius.only(
+                topRight: Radius.circular(15),
+                bottomLeft: Radius.circular(15),
+              ),
+      ),
+      child: Column(
+        children: [
+          Text(message.time),
+          SizedBox(height: 5),
+          Text(message.text),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,13 +78,22 @@ class _ChatScreenState extends State<ChatScreen> {
                   topRight: Radius.circular(30),
                 ),
               ),
-              child: ListView.builder(
-                itemBuilder: (context, index) {
-                  return Text(
-                    messages[index].text!,
-                  );
-                },
-                itemCount: messages.length,
+              child: ClipRRect(
+                //cut the edges
+
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                  topRight: Radius.circular(30),
+                ),
+                child: ListView.builder(
+                  padding: EdgeInsets.only(top: 15),
+                  itemBuilder: (context, index) {
+                    final Message message = messages[index];
+                    bool isMe = message.sender?.id == currentUser.id;
+                    return _buildMessage(message, isMe);
+                  },
+                  itemCount: messages.length,
+                ),
               ),
             ),
           ),
