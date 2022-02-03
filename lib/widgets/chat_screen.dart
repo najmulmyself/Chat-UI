@@ -80,6 +80,8 @@ class _ChatScreenState extends State<ChatScreen> {
             // if we don't use expanded it will take the maximum space in a row.
             // .collapse will be remove the underline in the textfield.
             child: TextField(
+              textCapitalization: TextCapitalization.sentences,
+              onChanged: (value) {},
               decoration:
                   InputDecoration.collapsed(hintText: "Send a message...."),
             ),
@@ -113,39 +115,43 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Container(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        // this will help to minimize keybord when click on the other side of the body
+        child: Column(
+          children: [
+            Expanded(
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
                 ),
-              ),
-              child: ClipRRect(
-                //cut the edges
+                child: ClipRRect(
+                  //cut the edges
 
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
-                ),
-                child: ListView.builder(
-                  reverse: true,
-                  padding: EdgeInsets.only(top: 15),
-                  itemBuilder: (context, index) {
-                    final Message message = messages[index];
-                    bool isMe = message.sender?.id == currentUser.id;
-                    return _buildMessage(message, isMe);
-                  },
-                  itemCount: messages.length,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
+                  child: ListView.builder(
+                    reverse: true,
+                    padding: EdgeInsets.only(top: 15),
+                    itemBuilder: (context, index) {
+                      final Message message = messages[index];
+                      bool isMe = message.sender?.id == currentUser.id;
+                      return _buildMessage(message, isMe);
+                    },
+                    itemCount: messages.length,
+                  ),
                 ),
               ),
             ),
-          ),
-          _buildMessageComposer(),
-        ],
+            _buildMessageComposer(),
+          ],
+        ),
       ),
     );
   }
