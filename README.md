@@ -2,4 +2,4 @@
 
 A new Flutter project.
 
-![](https://github.com/najmulmyself/Chat-UI/blob/master/chatUI.gif)
+![](https://github.com/najmulmyself/Chat-UI/blob/master/chatUI.gif =250x250)
