@@ -4,4 +4,4 @@ A new Flutter project.
 
 <!-- ![](https://github.com/najmulmyself/Chat-UI/blob/master/chatUI.gif) -->
 
-<img src="https://github.com/najmulmyself/Chat-UI/blob/master/chatUI.gif" height="600" width="300">
+<img src="https://github.com/najmulmyself/Chat-UI/blob/master/chatUI.gif" height="600" width="400">
